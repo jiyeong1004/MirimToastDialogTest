@@ -29,7 +29,7 @@ public class MainActivity2 extends AppCompatActivity {
         textEmail = findViewById(R.id.text_main_email);
         editName = findViewById(R.id.edit_name);
         editEmail = findViewById(R.id.edit_email);
-        btnHere = findViewById(R.id.btn_here);
+        btnHere = findViewById(R.id.btn_main_here);
         btnHere.setOnClickListener(btnHereListener);
     }
     View.OnClickListener btnHereListener = new View.OnClickListener() {
@@ -37,7 +37,7 @@ public class MainActivity2 extends AppCompatActivity {
         public void onClick(View v) {
             dialogView = View.inflate(MainActivity2.this, R.layout.dialog1, null);
             AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity2.this);
-            dlg.setTitle("학생 정보 입력");
+            dlg.setTitle("사용자 정보 입력");
             dlg.setIcon(R.drawable.ic_flower);
             dlg.setView(dialogView);
             dlg.setPositiveButton("확인", positiveButtonListener);
