@@ -1,11 +1,13 @@
 package com.example.mirimtoastdialogtest;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         textEmail = findViewById(R.id.text_email);
         editName = findViewById(R.id.edit_name);
         editEmail = findViewById(R.id.edit_email);
-        textToast = findViewById(R.id.text_toast);
         btnHere = findViewById(R.id.btn_here);
         btnHere.setOnClickListener(btnHereListener);
     }
@@ -36,9 +37,31 @@ public class MainActivity extends AppCompatActivity {
             dlg.setTitle("사용자 정보 입력");
             dlg.setIcon(R.drawable.ic_flower);
             dlg.setView(dialogView);
-            dlg.setPositiveButton("확인", null);
-            dlg.setNegativeButton("취소", null);
+            dlg.setPositiveButton("확인", positiveButtonListener);
+            dlg.setNegativeButton("취소", negativeButtonListener);
             dlg.show();
+        }
+    };
+
+    DialogInterface.OnClickListener positiveButtonListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            editName = dialogView.findViewById(R.id.edit_name);
+            editEmail = dialogView.findViewById(R.id.edit_email);
+            textName.setText(editName.getText().toString() + "님 입니다.");
+            textEmail.setText(editEmail.getText().toString() + "이메일 주소입니다.");
+        }
+    };
+
+    DialogInterface.OnClickListener negativeButtonListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            Toast toast = new Toast(MainActivity.this);
+            toastView = View.inflate(MainActivity.this, R.layout.toast1, null);
+            textToast = toastView.findViewById(R.id.text_toast);
+            textToast.setText("취소버튼을 누르셨네요.");
+            toast.setView(toastView);
+            toast.show();
         }
     };
 }
