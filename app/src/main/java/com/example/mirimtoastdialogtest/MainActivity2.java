@@ -3,7 +3,10 @@ package com.example.mirimtoastdialogtest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -34,7 +37,7 @@ public class MainActivity2 extends AppCompatActivity {
         public void onClick(View v) {
             dialogView = View.inflate(MainActivity2.this, R.layout.dialog1, null);
             AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity2.this);
-            dlg.setTitle("사용자 정보 입력");
+            dlg.setTitle("학생 정보 입력");
             dlg.setIcon(R.drawable.ic_flower);
             dlg.setView(dialogView);
             dlg.setPositiveButton("확인", positiveButtonListener);
@@ -61,6 +64,10 @@ public class MainActivity2 extends AppCompatActivity {
             textToast = toastView.findViewById(R.id.text_toast);
             textToast.setText("취소버튼을 누르셨네요.");
             toast.setView(toastView);
+            Display display = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
+            int xOffset = (int)(Math.random() * display.getWidth());
+            int yOffset = (int)(Math.random() * display.getWidth());
+            toast.setGravity(Gravity.TOP | Gravity.LEFT, xOffset, yOffset);
             toast.show();
         }
     };
